@@ -10,5 +10,4 @@ public class ItemLog implements Serializable {
 
     @Id
     private String _id;
-
 }
