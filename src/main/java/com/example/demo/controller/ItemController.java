@@ -19,12 +19,14 @@ public class ItemController {
     @PostMapping("/addItem")
     public ResponseEntity<Item> addItem(@RequestParam("name") String name,
                                   @RequestParam("count") String count,
-                                  @RequestParam("count") String stock) {
+                                  @RequestParam("code") String code,
+                                        @RequestParam("type") String type) {
 
         Item item = new Item();
         item.setName(name);
-        item.setCode(Integer.parseInt(count));
-        item.setCount(Integer.parseInt(stock));
+        item.setCode(Integer.parseInt(code));
+        item.setCount(Integer.parseInt(count));
+        item.setType(type);
         Item result = itemRepository.save(item);
         return new ResponseEntity<>(result, HttpStatus.OK);
 
@@ -56,7 +58,8 @@ public class ItemController {
     public ResponseEntity<String> updateItem(@PathVariable (value = "id") String _id,
                                              @RequestParam("name") String name,
                                              @RequestParam("code") int code,
-                                             @RequestParam("count") int count){
+                                             @RequestParam("count") int count,
+                                             @RequestParam("type") String type){
         if (!itemRepository.existsBy_id(_id)){
             return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
         }
@@ -68,6 +71,7 @@ public class ItemController {
         }
         temp.setCode(code);
         temp.setCount(count);
+        temp.setType(type);
         itemRepository.save(temp);
         return new ResponseEntity<>("", HttpStatus.OK);
     }

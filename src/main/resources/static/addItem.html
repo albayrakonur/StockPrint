@@ -134,12 +134,12 @@
                     <ul class="vertical-nav-menu">
                         <li class="app-sidebar__heading">STOCK PRINT</li>
                         <li>
-                            <a href="index.html" class="mm-active">
+                            <a href="index.html">
                                 <i class="metismenu-icon pe-7s-rocket"></i> Anasayfa
                             </a>
                         </li>
                         <li>
-                            <a href="addItem.html">
+                            <a href="addItem.html" class="mm-active">
                                 <i class="metismenu-icon pe-7s-rocket"></i> Stok Ekle
                             </a>
                         </li>
@@ -172,13 +172,48 @@
                     </div>
                 </div>
                 <div class="container">
-                    <div class="main-card mb-3 card" style="border-radius: 50px;  box-shadow: 5px 5px 5px #e1e1e1;">
-                        <div class="card-body"><h5 class="card-title"></h5>
-                            <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Stoktaki Ürünler</h1>
+                    <div class="main-card mb-3 card" style="border-radius: 50px; box-shadow: 5px 5px 5px #e1e1e1;">
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Ürün Ekle</h1>
                             <hr class="mt-2 mb-5">
-                            <div class="row text-center text-lg-left" id="recipe-list">
-
-                            </div>
+                            <form class="" id="addItemForm">
+                                <div class="position-relative row form-group">
+                                    <label for="itemName" class="col-sm-2 col-form-label">Ürün Adı</label>
+                                    <div class="col-sm-10">
+                                        <input id="itemName" type="text" class="form-control" required="">
+                                    </div>
+                                </div>
+                                <div class="position-relative row form-group">
+                                    <label for="itemCode" class="col-sm-2 col-form-label">Ürün Kodu</label>
+                                    <div class="col-sm-10">
+                                        <input id="itemCode" class="form-control" required=""></input>
+                                    </div>
+                                </div>
+                                <div class="position-relative row form-group">
+                                    <label for="itemType" class="col-sm-2 col-form-label">Ürün Türü</label>
+                                    <div class="col-sm-10">
+                                        <select id = "itemType" required="">
+                                            <option>Tür Seçiniz</option>
+                                            <option>Elektronik</option>
+                                            <option>Hammadde</option>
+                                            <option>Hırdavat</option>
+                                            <option>Kimyasal</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="position-relative row form-group">
+                                    <label for="itemCount" class="col-sm-2 col-form-label">Ürün Miktarı</label>
+                                    <div class="col-sm-10">
+                                        <input id="itemCount" class="form-control" required=""></input>
+                                    </div>
+                                </div>
+                                <div class="position-relative row form-check">
+                                    <div id="addItemButton" class="col-sm-10 offset-sm-2">
+                                        <button class="btn btn-lg btn-primary">Ürün Ekle</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -189,6 +224,41 @@
 <script type="text/javascript" src="./assets/scripts/main.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
+
+    $(function() {
+        $("#addItemForm").on("submit", function(e) {
+            e.preventDefault();
+            var data = new FormData();
+            var name = document.getElementById("itemName").value;
+            var code = document.getElementById("itemCode").value;
+            var count = document.getElementById("itemCount").value;
+            var type = document.getElementById("itemType");
+            type = type.options[type.selectedIndex].value;
+            console.log("type: " + type);
+            data.append("name", name);
+            data.append("code", code);
+            data.append("count", count);
+            data.append("type", type);
+            console.log(name + " " + code + " " + type + " " + count);
+            $.ajax({
+                async: true,
+                crossDomain: true,
+                url: "http://localhost:3000/addItem",
+                type: "POST",
+                headers: {},
+                processData: false,
+                contentType: false,
+                mimeType: "multipart/form-data",
+                data: data,
+                success: function(data, textStatus, response){
+                    alert("basarili");
+                },
+                error: function (xhr, status, err) {
+                    alert("error!!!");
+                }
+            });
+        });
+    });
 
 
 </script>

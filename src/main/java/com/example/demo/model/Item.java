@@ -13,7 +13,7 @@ public class Item implements Serializable {
     private int code;
     private String name;
     private int count;
-
+    private String type;
 
     public String get_id() {
         return _id;
@@ -45,6 +45,14 @@ public class Item implements Serializable {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
 }
