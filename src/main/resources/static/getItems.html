@@ -270,7 +270,7 @@
         $.ajax({
             async: true,
             crossDomain: true,
-            url: "http://localhost:3000/getAllItems",
+            url: "https://stockprint.herokuapp.com/getAllItems",
             type: "GET",
             headers: {},
             success: function(data, textStatus, response){
@@ -292,7 +292,7 @@
                 kimyasal.innerHTML = kmyslList;
             },
             error: function (xhr, status, err) {
-                alert("E");
+                alert("Stok getirilirken hata oluştu.");
             }
         });
     });

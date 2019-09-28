@@ -243,7 +243,7 @@
             $.ajax({
                 async: true,
                 crossDomain: true,
-                url: "http://localhost:3000/addItem",
+                url: "https://stockprint.herokuapp.com/addItem",
                 type: "POST",
                 headers: {},
                 processData: false,
@@ -251,10 +251,10 @@
                 mimeType: "multipart/form-data",
                 data: data,
                 success: function(data, textStatus, response){
-                    alert("basarili");
+                    alert("ürün eklendi.");
                 },
                 error: function (xhr, status, err) {
-                    alert("error!!!");
+                    alert("ürün eklenirken hata.");
                 }
             });
         });
