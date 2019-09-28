@@ -144,7 +144,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="getItems.html" class="mm-active">
+                            <a href="getItems.html">
                                 <i class="metismenu-icon pe-7s-rocket"></i> Stok Göster
                             </a>
                         </li>
@@ -176,76 +176,8 @@
                         <div class="card-body"><h5 class="card-title"></h5>
                             <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Stoktaki Ürünler</h1>
                             <hr class="mt-2 mb-5">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <h5>Elektronik</h5>
-                                    <table class="mb-0 table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <th>Ürün Kodu</th>
-                                            <th>Elektronik Adı</th>
-                                            <th>Adet</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="elektronikList">
+                            <div class="row text-center text-lg-left" id="recipe-list">
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <br/>
-                                <hr>
-                                <br/>
-                                <div class="row">
-                                    <h5>Hammade</h5>
-                                    <table class="mb-0 table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <th>Ürün Kodu</th>
-                                            <th>Hammadde Adı</th>
-                                            <th>Adet</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="hammaddeList">
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <br/>
-                                <hr>
-                                <br/>
-                                <div class="row">
-                                    <h5>Hırdavat</h5>
-                                    <table class="mb-0 table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <th>Ürün Kodu</th>
-                                            <th>Hırdavat Adı</th>
-                                            <th>Adet</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="hirdavatList">
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <br/>
-                                <hr>
-                                <br/>
-                                <div class="row">
-                                    <h5>Kimyasal</h5>
-                                    <table class="mb-0 table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <th>Ürün Kodu</th>
-                                            <th>Kimyasal Adı</th>
-                                            <th>Adet</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="kimyasalList">
-
-                                        </tbody>
-                                    </table>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -258,44 +190,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-    $(document).ready(function() {
-        var elektronik = document.getElementById("elektronikList");
-        var hammadde = document.getElementById("hammaddeList");
-        var hirdavat = document.getElementById("hirdavatList");
-        var kimyasal = document.getElementById("kimyasalList");
-        var eleList = "";
-        var hrdvtList = "";
-        var hmmddList = "";
-        var kmyslList = "";
-        $.ajax({
-            async: true,
-            crossDomain: true,
-            url: "http://localhost:3000/getAllItems",
-            type: "GET",
-            headers: {},
-            success: function(data, textStatus, response){
-                console.log(data);
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].type.localeCompare("Elektronik") == 0) {
-                        eleList += "<tr><td></td><td> <a href=\"item.html/" + data[i]._id + "\">" + data[i].name + "</a> </td><td>" + data[i].count + "</td></tr>";
-                    }else if (data[i].type.localeCompare("Hammadde") == 0) {
-                        hrdvtList += "<tr> <td></td> <td> <a href=\"item.html/" + data[i].name + "\">" + data[i].name + "</a> </td></tr>";
-                    }else if (data[i].type.localeCompare("Hırdavat") == 0)  {
-                        hrdvtList += "<tr> <td></td> <td> <a href=\"item.html/" + data[i].name + "\">" + data[i].name + "</a> </td></tr>";
-                    }else if (data[i].type.localeCompare("Kimyasal") == 0) {
-                        kmyslList += "<tr> <td></td> <td> <a href=\"item.html/" + data[i].name + "\">" + data[i].name + "</a> </td></tr>";
-                    }
-                }
-                elektronik.innerHTML = eleList;
-                hammadde.innerHTML = hmmddList;
-                hirdavat.innerHTML = hrdvtList;
-                kimyasal.innerHTML = kmyslList;
-            },
-            error: function (xhr, status, err) {
-                alert("E");
-            }
-        });
-    });
 
 </script>
 </body>

@@ -82,6 +82,7 @@ public class ItemController {
         if (temp == null){
             return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
         }
+        itemRepository.deleteBy_id(id);
         return new ResponseEntity<>("", HttpStatus.OK);
     }
 
