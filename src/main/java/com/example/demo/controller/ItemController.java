@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -20,13 +22,16 @@ public class ItemController {
     public ResponseEntity<Item> addItem(@RequestParam("name") String name,
                                   @RequestParam("count") String count,
                                   @RequestParam("code") String code,
-                                        @RequestParam("type") String type) {
-
+                                        @RequestParam("type") String type,
+                                        @RequestParam("purchasedAt") String purchasedAt) throws Exception{
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = formatter.parse(purchasedAt);
         Item item = new Item();
         item.setName(name);
         item.setCode(Integer.parseInt(code));
         item.setCount(Integer.parseInt(count));
         item.setType(type);
+        item.setPurchasedAt(date);
         Item result = itemRepository.save(item);
         return new ResponseEntity<>(result, HttpStatus.OK);
 
